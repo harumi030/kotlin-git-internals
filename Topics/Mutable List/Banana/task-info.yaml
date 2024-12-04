@@ -1,0 +1,14 @@
+type: code
+custom_name: Banana!
+files:
+  - name: src/Main.kt
+    visible: true
+    highlight_level: NONE
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/11040#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Wed, 04 Dec 2024 10:21:32 UTC"
+record: -1
+submission_language: kotlin

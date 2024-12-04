@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Git_Internals.iml" filepath="$PROJECT_DIR$/.idea/modules/Git_Internals.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Git Internals/task/Git_Internals.Git_Internals-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Git Internals/task/Git_Internals.Git_Internals-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Git Internals/task/Git_Internals.Git_Internals-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Git Internals/task/Git_Internals.Git_Internals-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Git Internals/task/Git_Internals.Git_Internals-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Git Internals/task/Git_Internals.Git_Internals-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Banana/Git_Internals.Topics-Mutable_List-Banana.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Banana/Git_Internals.Topics-Mutable_List-Banana.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Banana/Git_Internals.Topics-Mutable_List-Banana.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Banana/Git_Internals.Topics-Mutable_List-Banana.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Banana/Git_Internals.Topics-Mutable_List-Banana.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Banana/Git_Internals.Topics-Mutable_List-Banana.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Remove us/Git_Internals.Topics-Mutable_List-Remove_us.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Remove us/Git_Internals.Topics-Mutable_List-Remove_us.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Remove us/Git_Internals.Topics-Mutable_List-Remove_us.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Remove us/Git_Internals.Topics-Mutable_List-Remove_us.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Remove us/Git_Internals.Topics-Mutable_List-Remove_us.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Remove us/Git_Internals.Topics-Mutable_List-Remove_us.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Theory/Git_Internals.Topics-Mutable_List-Theory.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Theory/Git_Internals.Topics-Mutable_List-Theory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Theory/Git_Internals.Topics-Mutable_List-Theory.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Theory/Git_Internals.Topics-Mutable_List-Theory.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Theory/Git_Internals.Topics-Mutable_List-Theory.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Theory/Git_Internals.Topics-Mutable_List-Theory.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Transformation/Git_Internals.Topics-Mutable_List-Transformation.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Transformation/Git_Internals.Topics-Mutable_List-Transformation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Transformation/Git_Internals.Topics-Mutable_List-Transformation.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Transformation/Git_Internals.Topics-Mutable_List-Transformation.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Transformation/Git_Internals.Topics-Mutable_List-Transformation.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Mutable List/Transformation/Git_Internals.Topics-Mutable_List-Transformation.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Git_Internals.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Git_Internals.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Git_Internals.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Git_Internals.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/Git_Internals.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/Git_Internals.util.test.iml" />
+    </modules>
+  </component>
+</project>
