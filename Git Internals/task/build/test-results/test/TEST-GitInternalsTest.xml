@@ -1,49 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="GitInternalsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-04T12:43:13" hostname="M7VH4X0MPP" time="0.063">
+<testsuite name="GitInternalsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-08T07:40:09" hostname="M7VH4X0MPP" time="0.065">
   <properties/>
-  <testcase name="start" classname="GitInternalsTest" time="0.063"/>
+  <testcase name="start" classname="GitInternalsTest" time="0.065"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 Enter .git directory location:
 > test/gitone
 Enter git object hash:
 > 0eee6a98471a350b2c2316313114185ecaf82f0e
-type:commit length:216
+*COMMIT*
+tree: 79401ddb0e2c0fe0472c813754dd4a8873b66a84
+parents: 12a4717e84b5e414f93cc91ca50a6d5a6c3563a0
+author: Smith mr.smith@matrix original timestamp: 2020-03-29 17:18:20 +03:00
+committer: Cypher cypher@matrix commit timestamp: 2020-03-29 17:25:52 +03:00
+commit message:
+get docs from feature1
+
 ?[1;31m
 Start test 2?[0m
 Enter .git directory location:
 > test/gitone
 Enter git object hash:
 > 490f96725348e92770d3c6bab9ec532564b7ebe0
-type:blob length:85
+*BLOB*
+fun main() {
+    while(true) {
+        println("Hello Hyperskill student!")
+    }
+} 
+
 ?[1;31m
 Start test 3?[0m
 Enter .git directory location:
 > test/gitone
 Enter git object hash:
 > 618383db6d7ee3bd2e97b871205f113b6a3ba854
-type:blob length:14
+*BLOB*
+Hello world! 
+
 ?[1;31m
 Start test 4?[0m
 Enter .git directory location:
 > test/gitone
 Enter git object hash:
-> a7b882bbf2db5d90287e9affc7e6f3b3c740b327
-type:tree length:35
+> 39a0337532d7720acc90497043e2ade92c386939
+*COMMIT*
+tree: 998b5fa98f0fae83e6cb24a8815b8923aead7ee0
+parents: 6d537a47eddc11f866bcc2013703bf31bfcf9ed8
+author: Neo neo@matrix original timestamp: 2020-04-04 09:59:23 +03:00
+committer: Neo neo@matrix commit timestamp: 2020-04-04 09:59:23 +03:00
+commit message:
+this commit message will have multiple lines
+we need multiple lines commit message for test purposes
+3
+4
+5
+
 ?[1;31m
 Start test 5?[0m
 Enter .git directory location:
-> test/gitone
+> test/gittwo
 Enter git object hash:
-> fb043556c251cb450a0d55e4ceb1ff35e12029c3
-type:tree length:73
+> 31cddcbd00e715688cd127ad20c2846f9ed98223
+*COMMIT*
+tree: aaa96ced2d9a1c8e72c56b253a0e2fe78393feb7
+author: Kalinka Kali.k4@email.com original timestamp: 2021-12-11 22:31:36 -03:00
+committer: Kalinka Kali.k4@email.com commit timestamp: 2021-12-11 22:31:36 -03:00
+commit message:
+simple hello
+
 ?[1;31m
 Start test 6?[0m
 Enter .git directory location:
-> test/gitone
+> test/gittwo
 Enter git object hash:
-> ad3a818dc87b9940935b24a5aa93fac00f086bf9
-type:tree length:35
+> dcec4e51e2ce4a46a6206d0d4ab33fa99d8b1ab5
+*COMMIT*
+tree: d128f76a96c56ac4373717d3fbba4fa5875ca68f
+parents: 5ad3239e54ba7c533d9f215a13ac82d14197cd8f | d2c5bedbb2c46945fd84f2ad209a7d4ee047f7f9
+author: Kalinka Kali.k4@email.com original timestamp: 2021-12-11 22:49:02 -03:00
+committer: Kalinka Kali.k4@email.com commit timestamp: 2021-12-11 22:49:02 -03:00
+commit message:
+awsome hello
+
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

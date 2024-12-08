@@ -198,6 +198,9 @@ files:
   - name: test/GitInternalsTest.java
     visible: false
     learner_created: false
-feedback_link: https://hyperskill.org/projects/110/stages/597/implement#comment
-status: Unchecked
+feedback_link: https://hyperskill.org/learn/step/9839#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Sun, 08 Dec 2024 07:40:09 UTC"
 record: -1
