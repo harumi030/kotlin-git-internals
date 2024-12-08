@@ -40,7 +40,7 @@ fun main() {
             }
 
             "tree" -> {
-                println(sections[1])
+                println(Tree(sections[1]).toString())
             }
 
             else -> println("unknown header")
@@ -107,4 +107,37 @@ fun sanitizeLine(type: String, line: String): String {
     val formattedTimeZone = "${timeZone.dropLast(2)}:${timeZone.takeLast(2)}"
 
     return "$name $email $lineType timestamp: $formattedTime $formattedTimeZone"
+}
+
+class Tree (originalData: String) {
+    var convertedData: MutableList<String> = mutableListOf()
+
+    init {
+        var input = originalData
+        val itemRegex = """(?<permission>\d+)\s(?<fileName>[^\u0000]+)\u0000(?<sha>.{20})""".toRegex()
+
+        while(input.isNotEmpty()) {
+            val match = itemRegex.find(input)
+            if(match != null) {
+                val permissionMetadata = match.groups["permission"]?.value
+                val fileName = match.groups["fileName"]?.value
+                val sha = convertSha(match.groups["sha"]?.value!!)
+                convertedData.add("$permissionMetadata $sha $fileName")
+                input = input.substring(match.range.last + 1)
+            } else {
+                break
+            }
+        }
+
+    }
+
+    fun convertSha(sha: String): String {
+        require(sha.length == 20) {"SHA-1 binary must be 20 bytes long"}
+        val byteArray = sha.toByteArray(Charsets.UTF_8)
+        return byteArray.joinToString("") {"%02x".format(it)}
+    }
+
+    override fun toString(): String {
+        return convertedData.joinToString("\n")
+    }
 }
