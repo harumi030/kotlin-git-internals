@@ -7,6 +7,7 @@ import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.zip.InflaterInputStream
+import kotlin.collections.copyOfRange
 
 fun main() {
     // write your code here
@@ -40,7 +41,8 @@ fun main() {
             }
 
             "tree" -> {
-                println(Tree(sections[1]).toString())
+                // In order to convert the SHA-1, you need the original byteArray
+                println(Tree(byteArray.copyOfRange(sections[0].length + 1, byteArray.size)).toString())
             }
 
             else -> println("unknown header")
@@ -109,32 +111,34 @@ fun sanitizeLine(type: String, line: String): String {
     return "$name $email $lineType timestamp: $formattedTime $formattedTimeZone"
 }
 
-class Tree (originalData: String) {
+// Tried to use class instead of a function
+class Tree (originalData: ByteArray) {
     var convertedData: MutableList<String> = mutableListOf()
 
     init {
-        var input = originalData
-        val itemRegex = """(?<permission>\d+)\s(?<fileName>[^\u0000]+)\u0000(?<sha>.{20})""".toRegex()
+        var inputStr = originalData.toString(Charsets.ISO_8859_1)
 
-        while(input.isNotEmpty()) {
-            val match = itemRegex.find(input)
+        // (?s) makes . to match any character, including \n
+        val itemRegex = """(?s)(?<permission>\d+)\s(?<fileName>[^\u0000]+)\u0000(?<sha>.{20})""".toRegex()
+
+        var currentIndex = 0
+        while(currentIndex < inputStr.length) {
+            val match = itemRegex.find(inputStr, currentIndex)
             if(match != null) {
                 val permissionMetadata = match.groups["permission"]?.value
                 val fileName = match.groups["fileName"]?.value
-                val sha = convertSha(match.groups["sha"]?.value!!)
+                val shaStartIndex = match.groups["sha"]!!.range.first
+                val shaEndIndex = match.groups["sha"]!!.range.last + 1
+
+                // Instead of formatting a string, we need the original byteArray to correctly convert
+                val sha = originalData.copyOfRange(shaStartIndex, shaEndIndex).joinToString("") {"%02x".format(it)}
                 convertedData.add("$permissionMetadata $sha $fileName")
-                input = input.substring(match.range.last + 1)
+                currentIndex = shaEndIndex
             } else {
                 break
             }
         }
 
-    }
-
-    fun convertSha(sha: String): String {
-        require(sha.length == 20) {"SHA-1 binary must be 20 bytes long"}
-        val byteArray = sha.toByteArray(Charsets.UTF_8)
-        return byteArray.joinToString("") {"%02x".format(it)}
     }
 
     override fun toString(): String {

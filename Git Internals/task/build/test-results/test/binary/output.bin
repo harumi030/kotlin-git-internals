@@ -32,4 +32,74 @@
 Enter git object hash:
 +> fb043556c251cb450a0d55e4ceb1ff35e12029c3
 *TREE*
-T100644 2b26efbfbd5c04375defbfbd2037efbfbdefbfbd4c2a45efbfbd04efbfbd71efbfbd main.kt
+8100644 2b26c15c04375d90203783fb4c2a45ff04b571a6 main.kt
+;100644 4a8abe7b618ddf9c55adbea359ce891775794a61 readme.txt
+[1;31m
+Start test 4[0m
+Enter .git directory location:
+> test/gitone
+Enter git object hash:
++> ad3a818dc87b9940935b24a5aa93fac00f086bf9
+*TREE*
+8100644 c2d888ec7f06b71b5ec8712b0464d1ca7a0a9ffc main.kt
+[1;31m
+Start test 5[0m
+Enter .git directory location:
+> test/gitone
+Enter git object hash:
++> 109e8050b41bd10b81be0a51a5e67327f5609551
+*TREE*
+8100644 2b26c15c04375d90203783fb4c2a45ff04b571a6 main.kt
+;100644 f674b5d3a4c6cef5815b4e72ef2ea1bbe46b786b readme.txt
+;40000 74198c849dbbcd51d060c59253a4757eedb9bd12 some-folder
+[1;31m
+Start test 6[0m
+Enter .git directory location:
+> test/gitone
+Enter git object hash:
++> 74198c849dbbcd51d060c59253a4757eedb9bd12
+*TREE*
+7100644 83cc19099347924da28890838ad5e698da8504a3 qq.txt
+[1;31m
+Start test 7[0m
+Enter .git directory location:
+> test/gitone
+Enter git object hash:
++> 74198c849dbbcd51d060c59253a4757eedb9bd12
+*TREE*
+7100644 83cc19099347924da28890838ad5e698da8504a3 qq.txt
+[1;31m
+Start test 8[0m
+Enter .git directory location:
+> test/gittwo
+Enter git object hash:
++> 31cddcbd00e715688cd127ad20c2846f9ed98223
+	*COMMIT*
+/tree: aaa96ced2d9a1c8e72c56b253a0e2fe78393feb7
+Qauthor: Kalinka Kali.k4@email.com original timestamp: 2021-12-11 22:31:36 -03:00
+Rcommitter: Kalinka Kali.k4@email.com commit timestamp: 2021-12-11 22:31:36 -03:00
+commit message:
+simple hello
+
+[1;31m
+Start test 9[0m
+Enter .git directory location:
+> test/gittwo
+Enter git object hash:
++> dcec4e51e2ce4a46a6206d0d4ab33fa99d8b1ab5
+	*COMMIT*
+/tree: d128f76a96c56ac4373717d3fbba4fa5875ca68f
+]parents: 5ad3239e54ba7c533d9f215a13ac82d14197cd8f | d2c5bedbb2c46945fd84f2ad209a7d4ee047f7f9
+Qauthor: Kalinka Kali.k4@email.com original timestamp: 2021-12-11 22:49:02 -03:00
+Rcommitter: Kalinka Kali.k4@email.com commit timestamp: 2021-12-11 22:49:02 -03:00
+commit message:
+awsome hello
+
+[1;31m
+Start test 10[0m
+Enter .git directory location:
+> test/gittwo
+Enter git object hash:
++> aaa96ced2d9a1c8e72c56b253a0e2fe78393feb7
+*TREE*
+:100644 ce013625030ba8dba906f756967f9e9ca394464a hello.txt
