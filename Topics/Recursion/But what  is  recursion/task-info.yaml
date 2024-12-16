@@ -1,0 +1,17 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: this function calls another function.
+  - text: this function calls another function as its last action
+  - text: no option is correct
+  - text: this function calls itself
+  - text: this function does not use any other functions
+files:
+  - name: src/Main.kt
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/13602#comment
+status: Solved
+record: -1
+custom_name: But what *is* recursion?.
+local_check: false

@@ -1,0 +1,16 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: 3
+  - text: 0
+  - text: 5
+  - text: 8
+files:
+  - name: src/Main.kt
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/13607#comment
+status: Solved
+record: -1
+custom_name: Multiple recursion simulation.
+local_check: false

@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://cogniterra.org/media/attachments/lesson/24947/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: "Mon, 09 Dec 2024 05:54:22 UTC"
+update_date: "Mon, 16 Dec 2024 17:08:32 UTC"
 stages:
   - id: 595
     step: 9837
@@ -16,16 +16,16 @@ stages:
     is_completed: true
   - id: 598
     step: 9840
-    is_completed: false
+    is_completed: true
   - id: 599
     step: 9841
-    is_completed: false
+    is_completed: true
   - id: 600
     step: 9842
-    is_completed: false
+    is_completed: true
   - id: 601
     step: 9843
-    is_completed: false
+    is_completed: true
 topics:
   0:
     - title: Starting with GitHub

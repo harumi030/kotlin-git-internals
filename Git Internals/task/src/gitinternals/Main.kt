@@ -1,5 +1,6 @@
 package gitinternals
 
+import java.io.File
 import java.io.FileInputStream
 import java.time.Instant
 import java.time.LocalDateTime
@@ -10,21 +11,45 @@ import java.util.zip.InflaterInputStream
 import kotlin.collections.copyOfRange
 
 fun main() {
-    // write your code here
     println("Enter .git directory location:")
     val gitDirectory = readln()
 
+    println("Enter command:")
+    val command = readln()
+
+    when (command) {
+        "list-branches" -> listBranches(gitDirectory)
+        "cat-file" -> runCatFileCommand(gitDirectory)
+        "log" -> runLogCommand(gitDirectory)
+        "commit-tree" -> runCommitTreeCommand(gitDirectory)
+    }
+}
+
+// Functions to run the commands
+fun listBranches (gitDirectory: String) {
+    val headBranch = getHeadBranch(gitDirectory)
+    val branches = getBranches(gitDirectory)
+
+    if(branches != null) {
+        val sortedBranches = branches.map {it.name}.sorted()
+        sortedBranches.forEach {
+            println(if(it == headBranch) "* $it" else "  $it")
+        }
+    } else {
+        println("No branches found")
+    }
+
+}
+
+fun runCatFileCommand (gitDirectory: String) {
     println("Enter git object hash:")
     val hash = readln()
-    val folder = hash.slice(0 until 2)
-    val rest = hash.substring(2)
 
-    val inputStream = FileInputStream("$gitDirectory/objects/$folder/$rest")
-    val inflaterInputStream = InflaterInputStream(inputStream)
-    val byteArray = inflaterInputStream.readAllBytes()
-    val data = byteArray.toString(Charsets.UTF_8)
+    val decompressedData = decompressFile(gitDirectory, hash)
 
-    val sections = data.split('\u0000', limit = 2)
+    val dataStr = decompressedData.toString(Charsets.UTF_8)
+
+    val sections = dataStr.split('\u0000', limit = 2)
     if (sections.size == 2) {
         val sectionParts = sections[0].split(" ")
         val header = sectionParts[0]
@@ -42,7 +67,7 @@ fun main() {
 
             "tree" -> {
                 // In order to convert the SHA-1, you need the original byteArray
-                println(Tree(byteArray.copyOfRange(sections[0].length + 1, byteArray.size)).toString())
+                println(Tree(decompressedData.copyOfRange(sections[0].length + 1, decompressedData.size)).toString())
             }
 
             else -> println("unknown header")
@@ -51,6 +76,89 @@ fun main() {
     } else {
         println("Unexpected data format")
     }
+}
+
+fun runLogCommand (gitDirectory: String) {
+    println("Enter branch name:")
+    val branchName = readln()
+
+    val branches = getBranches(gitDirectory)
+    val branch = branches?.find {it.name == branchName}
+    val file = File("$gitDirectory/refs/heads/${branch?.name}")
+
+    if(file.exists()) {
+        // Branch file points to a commit object
+        val commitSha = listOf(file.readText().replace("\n", ""))
+        printLog(gitDirectory, commitSha)
+    }
+}
+
+fun runCommitTreeCommand (gitDirectory: String) {
+    println("Enter commit-hash:")
+    val hash = readln()
+
+    // commit object
+    val decompressedData = decompressFile(gitDirectory, hash)
+    val dataStr = decompressedData.toString(Charsets.UTF_8)
+    val treeLine = dataStr.split("\u0000", limit = 2)[1].split("\n").find {it.startsWith("tree")}!!
+
+    // tree object
+    fun printTreeList (hash: String, folderName: String = "") {
+        val treeDecompressedData = decompressFile(gitDirectory, hash)
+        val treeDataStr = treeDecompressedData.toString(Charsets.UTF_8)
+        val sections = treeDataStr.split("\u0000", limit = 2)
+        val treeList = Tree(treeDecompressedData.copyOfRange(sections[0].length + 1, treeDecompressedData.size)).convertedData
+
+        for(item in treeList) {
+            val name =  item.split(" ")[2]
+            val isFile = name.contains(".")
+
+            if(folderName.isNotBlank()) print("$folderName/") else print("")
+            if(isFile) {
+                println(name)
+            } else {
+                printTreeList(hash = item.split(" ")[1], folderName = name)
+            }
+        }
+    }
+
+    printTreeList(treeLine.split(" ", limit = 2)[1])
+
+}
+
+// Util functions
+fun getHeadBranch (gitDirectory: String): String {
+    val headFile = File("$gitDirectory/HEAD")
+
+    if(headFile.exists()) {
+        val content = headFile.readText()
+        val fileSeparator = File.separator
+
+        // There is a \n character at the end
+        return content.split(fileSeparator).last().replace("\n", "")
+    } else {
+        println("HEAD file doesn't exist")
+        return ""
+    }
+}
+
+fun getBranches (gitDirectory: String): Array<File>? {
+    val headsDir = File("$gitDirectory/refs/heads")
+    if(headsDir.exists() && headsDir.isDirectory()) {
+        return headsDir.listFiles()
+    }
+        println("No branches found")
+        return null
+
+}
+
+fun decompressFile (gitDirectory: String, hash: String): ByteArray {
+    val folder = hash.slice(0 until 2)
+    val rest = hash.substring(2)
+
+    val inputStream = FileInputStream("$gitDirectory/objects/$folder/$rest")
+    val inflaterInputStream = InflaterInputStream(inputStream)
+    return inflaterInputStream.readAllBytes()
 }
 
 fun transformCommitBody(body: String): String {
@@ -112,7 +220,7 @@ fun sanitizeLine(type: String, line: String): String {
 }
 
 // Tried to use class instead of a function
-class Tree (originalData: ByteArray) {
+class Tree (private val originalData: ByteArray) {
     var convertedData: MutableList<String> = mutableListOf()
 
     init {
@@ -144,4 +252,45 @@ class Tree (originalData: ByteArray) {
     override fun toString(): String {
         return convertedData.joinToString("\n")
     }
+
+    fun getListOfNames(): List<String> {
+        return convertedData.map { it.split(" ").last() }
+    }
+}
+
+fun printLog (gitDirectory: String, shas: List<String>) {
+    for (i in shas.indices) {
+        val isMergedCommit = shas.size == 2 && i == 0
+
+        val decompressedData = decompressFile(gitDirectory, shas[i])
+        val dataStr = decompressedData.toString(Charsets.UTF_8)
+
+        val lines = dataStr.split("\n").toMutableList()
+
+        // Get the index of the committer
+        val committerLineIndex = lines.indexOfFirst {it.startsWith("committer")}
+
+        // Sanitize the committer line without "committer"
+        val committerLine = sanitizeLine("committer", lines[committerLineIndex].split(" ", limit = 2)[1])
+        val commitBody = lines.slice(committerLineIndex + 2 until lines.size)
+
+        // Print commit log
+        println("Commit: ${shas[i]}${if(isMergedCommit) " (merged)" else ""}")
+        println(committerLine)
+        for( line in commitBody) {
+            println(line)
+        }
+        // Check if there is parent commit
+        if(!isMergedCommit) {
+            // Reverse the order so merged commit is logged first
+            val parentShas = lines.filter {it.startsWith("parent")}.map {it.split(" ", limit = 2)[1]}.reversed()
+
+            // If there are any parents, run the function recursively.
+            if (parentShas.isNotEmpty()) {
+                return printLog(gitDirectory, parentShas)
+            }
+        }
+
+    }
+
 }

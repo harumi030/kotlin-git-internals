@@ -1,0 +1,14 @@
+type: code
+custom_name: "Programming a recursive function: determining if the given number is\
+  \ prime."
+files:
+  - name: src/Main.kt
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/13610#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Tue, 10 Dec 2024 13:43:29 UTC"
+record: -1
+submission_language: kotlin
